@@ -21,4 +21,4 @@ function Child() {
 
 
 ## Is this architecture useful?
-I'm not entirely sure. I am making this as a proof of concept to demonstrate one way we can generate the unique-to-each-view toolbars in [ePlant](https://bar.utoronto.ca/eplant/). We could leave rendering the toolbar as the responsibility of each view, but this might lead to a user experience that isn't *ePlant* enough, and feels more like a set of separate programs. We could also allow each view to provide a configuration object for the toolbar, but that would require more boilerplate than a system with hooks like this.
+I'm not entirely sure. I am making this as a proof of concept to demonstrate one way we can generate the unique-to-each-view toolbars in [ePlant](https://bar.utoronto.ca/eplant/). We could leave rendering the toolbar as the responsibility of each view, but this might lead to a user experience that isn't consistent enough, and feels more like a set of separate programs. We could also allow each view to provide a configuration object for the toolbar, but that might require more boilerplate than a system with hooks like this.
