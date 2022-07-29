@@ -64,7 +64,10 @@ export function useTextfield(
   useToolbarElement(
     <InputGroup>
       <InputGroup.Text>{label}</InputGroup.Text>
-      <Form.Control onChange={(e) => setValue(e.target.value)}></Form.Control>
+      <Form.Control
+        onChange={(e) => setValue(e.target.value)}
+        value={value}
+      ></Form.Control>
     </InputGroup>,
     [value]
   );
