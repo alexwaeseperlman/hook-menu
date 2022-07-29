@@ -64,10 +64,7 @@ export function useTextfield(
   useToolbarElement(
     <InputGroup>
       <InputGroup.Text>{label}</InputGroup.Text>
-      <Form.Control
-        onChange={(e) => setValue(e.target.value)}
-        value={value}
-      ></Form.Control>
+      <Form.Control onChange={(e) => setValue(e.target.value)}></Form.Control>
     </InputGroup>,
     [value]
   );
@@ -84,7 +81,7 @@ export function Toolbar() {
         <Navbar.Collapse>
           <Nav className="me-auto">
             {Object.entries(toolbar)
-              .sort(([ida, ela], [idb, elb]) => order[ida] - order[idb])
+              .sort(([a], [b]) => order[a] - order[b])
               .map(([key, val]) => (
                 <Nav.Item style={{ paddingLeft: 2, paddingRight: 2 }} key={key}>
                   {val}
@@ -103,7 +100,6 @@ export default function Parent(props: React.PropsWithChildren<{}>) {
     <SetToolbarContext.Provider value={setToolbar}>
       <ToolbarContext.Provider value={toolbar}>
         <Toolbar />
-
         <Container>{props.children}</Container>
       </ToolbarContext.Provider>
     </SetToolbarContext.Provider>
