@@ -22,9 +22,11 @@ const SetToolbarContext = React.createContext<
 const useToolbar = () => React.useContext(ToolbarContext);
 const useSetToolbar = () => React.useContext(SetToolbarContext);
 
+const order: Record<string, number> = {};
 export const useToolbarElement = (el: JSX.Element, deps: unknown[]) => {
   const setToolbar = useSetToolbar();
   const id = React.useId();
+  if (!order[id]) order[id] = Object.keys(order).length;
   React.useEffect(() => {
     setToolbar((prev) => ({ ...prev, [id]: el }));
     return () => {
@@ -34,7 +36,7 @@ export const useToolbarElement = (el: JSX.Element, deps: unknown[]) => {
         return newToolbar;
       });
     };
-  }, [el, id, ...deps]);
+  }, [el, id, ...deps, setToolbar]);
 };
 
 export const useToggle = (initial: boolean, label: string) => {
@@ -81,11 +83,13 @@ export function Toolbar() {
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav className="me-auto">
-            {Object.entries(toolbar).map(([key, val]) => (
-              <Nav.Item style={{ paddingLeft: 2, paddingRight: 2 }} key={key}>
-                {val}
-              </Nav.Item>
-            ))}
+            {Object.entries(toolbar)
+              .sort(([ida, ela], [idb, elb]) => order[ida] - order[idb])
+              .map(([key, val]) => (
+                <Nav.Item style={{ paddingLeft: 2, paddingRight: 2 }} key={key}>
+                  {val}
+                </Nav.Item>
+              ))}
           </Nav>
         </Navbar.Collapse>
       </Container>

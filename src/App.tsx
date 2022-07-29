@@ -4,6 +4,8 @@ import Parent, { useTextfield, useToggle } from "./Parent";
 function Child() {
   const [toggle, setToggle] = useToggle(false, "Toggle");
   const [text, setText] = useTextfield("", "Text box");
+  const [text2, setText2] = useTextfield("", "Text box 2");
+
   return (
     <Table>
       <thead>
@@ -20,6 +22,10 @@ function Child() {
         <tr>
           <th>Text</th>
           <th>{text}</th>
+        </tr>
+        <tr>
+          <th>Text 2</th>
+          <th>{text2}</th>
         </tr>
       </tbody>
     </Table>
